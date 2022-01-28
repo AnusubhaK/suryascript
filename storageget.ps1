@@ -35,7 +35,7 @@ $ClusterVMs = $Cluster | Get-VM
 #$ClusterActiveMemoryPercentage = [math]::round(($Cluster | Get-Stat -Stat mem.usage.average -Start $Start -Finish $Finish | Measure-Object -Property Value -Average).Average,0)
 
 $VMHost = $Cluster | Get-VMHost | Select-Object -Last 1
-$ClusterFreeDiskspaceGB = ($VMHost | Get-Datastore | Where-Object {$_.Extensiondata.Summary.MultipleHostAccess -eq $True} | Measure-Object -Property FreeSpaceGB -Sum).Sum
+$ClusterFreeDiskspaceGB = ($VMHost | Get-Datastore | Where-Object {$_.Extensiondata.Summary.MultipleHostAccess -eq $True} | Measure-Object -Property FreeSpaceGB -Sum) .Sum
 
 New-Object -TypeName PSObject -Property @{
 Cluster = $Cluster.Name
